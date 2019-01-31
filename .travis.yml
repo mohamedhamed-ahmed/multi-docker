@@ -3,18 +3,18 @@ services:
   - docker
 
 before_install:
-  - docker build -t mohamedhamed1990/react-test -f ./client/Dockerfile.dev ./client
+  - docker build -t mohamedhamed/react-test -f ./client/Dockerfile.dev ./client
 
 script:
-  - docker run mohamedhamed1990/react-test npm test -- --coverage
+  - docker run mohamedhamed/react-test npm test -- --coverage
 
 after_success:
-  - docker build -t mohamedhamed1990/multi-client ./client
-  - docker build -t mohamedhamed1990/multi-nginx ./nginx
-  - docker build -t mohamedhamed1990/multi-server ./server
-  - docker build -t mohamedhamed1990/multi-worker ./worker
+  - docker build -t mohamedhamed/multi-client ./client
+  - docker build -t mohamedhamed/multi-nginx ./nginx
+  - docker build -t mohamedhamed/multi-server ./server
+  - docker build -t mohamedhamed/multi-worker ./worker
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
-  - docker push mohamedhamed1990/multi-client
-  - docker push mohamedhamed1990/multi-nginx
-  - docker push mohamedhamed1990/multi-server
-  - docker push mohamedhamed1990/multi-worker
+  - docker push mohamedhamed/multi-client
+  - docker push mohamedhamed/multi-nginx
+  - docker push mohamedhamed/multi-server
+  - docker push mohamedhamed/multi-worker
